@@ -17,6 +17,7 @@
 		i2c-0 = &i2c0;
 		led0 = &led0;
 		sw0 = &button0;
+		lora0 = &lora;
 	};
 
 	leds {
@@ -46,6 +47,8 @@
 			label = "PRG Button";
 		};
 	};
+
+
 
 	chosen {
 		zephyr,sram = &sram0;
@@ -82,6 +85,29 @@
 	scl-pin = <15>;
 	pinctrl-0 = <&i2c0_sda_gpio4 &i2c0_scl_gpio15>;
 	pinctrl-names = "default";
+};
+
+&spi3 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;	
+    pinctrl-0 = <&spim3_miso_gpio19 &spim3_mosi_gpio27
+                     &spim3_sclk_gpio5 &spim3_csel_gpio18>;
+    pinctrl-names = "default";
+
+	cs-gpios = <&gpio0 18 GPIO_ACTIVE_LOW >;
+
+	lora: sx1276@0 {
+		compatible = "semtech,sx1276";
+		reg = <0>;
+		label = "sx1276";
+		reset-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
+		dio-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>,
+			<&gpio1 34 GPIO_ACTIVE_HIGH>,
+			<&gpio1 5 GPIO_ACTIVE_HIGH>;
+		spi-max-frequency = <1000000>;
+		power-amplifier-output = "pa-boost";
+	};
 };
 
 &flash0 {

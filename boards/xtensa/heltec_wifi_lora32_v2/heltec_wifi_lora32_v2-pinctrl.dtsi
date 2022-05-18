@@ -19,6 +19,23 @@
 		bias-pull-up;
 	};
 
+	spim3_miso_gpio19: spim3_miso_gpio19 {
+		pinmux = <SPIM3_MISO_GPIO19>;
+	};
+
+	spim3_mosi_gpio27: spim3_mosi_gpio27 {
+		pinmux = <SPIM3_MOSI_GPIO27>;
+		output-low;
+	};
+
+	spim3_sclk_gpio5: spim3_sclk_gpio5 {
+		pinmux = <SPIM3_SCLK_GPIO5>;
+	};
+
+	spim3_csel_gpio18: spim3_csel_gpio18 {
+		pinmux = <SPIM3_CSEL_GPIO18>;
+	};
+
 	i2c0_sda_gpio4: i2c0_sda_gpio4 {
 		pinmux = <I2C0_SDA_GPIO4>;
 		bias-pull-up;
